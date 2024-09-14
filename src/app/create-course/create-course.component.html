@@ -1,0 +1,42 @@
+
+<div class="create-course-panel data-form">
+
+  <h2 class="title">Create New Course</h2>
+
+  <mat-horizontal-stepper [linear]="false" class="mat-elevation-z5" labelPosition="bottom">
+    <mat-step [stepControl]="step1.form" errormessage="Landing pae in error">
+      <ng-template matStepLabel>Course langing page details</ng-template>
+      <create-course-step-1 #step1></create-course-step-1>
+      <div class="stepper-buttons">
+        <button mat-raised-button color="primary" matStepperNext>Continue to step 2</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="step2.form" errormessage="Pricing in error">
+      <create-course-step-2 #step2></create-course-step-2>
+      <ng-template matStepLabel>Course pricing details</ng-template>
+      <div class="stepper-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Continue to step 3</button>
+      </div>
+
+    </mat-step>
+
+
+    <mat-step [stepControl]="step3.form" errormessage="Course lessons in error">
+
+      <ng-template matStepLabel>Course lessons</ng-template>
+      <create-course-step-3 #step3></create-course-step-3>
+      <div class="stepper-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" [disabled]="!step3.form.valid || step3.lessons.length == 0"
+          (click)="submit(step1.form.value, step2.form.value, step3.form.value)">Create course</button>
+      </div>
+
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</div>
+
+
